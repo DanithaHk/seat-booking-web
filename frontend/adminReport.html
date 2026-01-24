@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking &amp; Revenue Reports - BusAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111418] dark:text-white">
+<div class="relative flex flex-col w-full min-h-screen group/design-root overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2a343e] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">directions_bus</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">BusAdmin</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f2f4] dark:bg-[#1e2936]">
+<div class="text-[#617589] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:outline-0 focus:ring-0 h-full placeholder:text-[#617589] px-4 pl-2 text-base font-normal leading-normal text-[#111418] dark:text-white" placeholder="Search reports..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Bookings</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Schedules</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Buses</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary py-1" href="#">Reports</a>
+</nav>
+<div class="flex gap-2 border-l border-[#f0f2f4] dark:border-[#2a343e] pl-6">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#1e2936] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#1e2936] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Admin user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYYcuFdstOPTVT2YopLgNIBsf7lrI-NCdxlDwPzQk2m_fFSiSdBfPRKTeeUs6vlg1c3q4s8gWglaeZ6W1ZLlG4_TR7TzcnBUrS8Qu43gRUUydvpza1TV18uKxk2fG2sXZNAQNnKZ4BdSH6OcNloFYvmFAAaV1K7IrdN8L8JO7SgXR6SalumRZX5zSE-sJX1EQD9TpdjeWw7mNqmrnkorHLraUcof43XLmCQJoGzDVNak4UYXTUlFdpCwKMjADllBc7ENNMzAYKFac");'></div>
+</div>
+</header>
+<main class="flex-1 px-4 md:px-10 lg:px-20 py-8 max-w-[1440px] mx-auto w-full">
+<div class="flex flex-wrap gap-2 py-2">
+<a class="text-[#617589] text-sm font-medium leading-normal hover:text-primary" href="#">Dashboard</a>
+<span class="text-[#617589] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-bold leading-normal">Booking &amp; Revenue Reports</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-3 py-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Booking &amp; Revenue Reports</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base">Comprehensive performance analytics and revenue tracking for your bus operations.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex bg-white dark:bg-[#1e2936] rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] p-1">
+<button class="px-4 py-2 rounded-md bg-primary text-white text-sm font-bold">30 Days</button>
+<button class="px-4 py-2 rounded-md text-[#617589] dark:text-gray-400 text-sm font-medium">90 Days</button>
+<button class="px-4 py-2 rounded-md text-[#617589] dark:text-gray-400 text-sm font-medium">1 Year</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Total Revenue</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">payments</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">$142,580</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#078838] text-sm">trending_up</span>
+<p class="text-[#078838] text-sm font-bold">+15.2% <span class="text-gray-400 font-normal">vs last month</span></p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Avg. Ticket Price</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">sell</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">$42.50</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#078838] text-sm">trending_up</span>
+<p class="text-[#078838] text-sm font-bold">+2.4% <span class="text-gray-400 font-normal">vs last month</span></p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Overall Occupancy</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">airline_seat_recline_normal</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">78.4%</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-sm">trending_down</span>
+<p class="text-red-500 text-sm font-bold">-1.2% <span class="text-gray-400 font-normal">vs last month</span></p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 bg-white dark:bg-[#1e2936] rounded-xl border border-[#dbe0e6] dark:border-[#2a343e] p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Revenue Trends (Last 30 Days)</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-xs text-[#617589] dark:text-gray-400">
+<span class="size-2 rounded-full bg-primary"></span> Revenue
+                        </span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-1">
+<div class="flex-1 bg-primary/10 rounded-t-sm hover:bg-primary/20 transition-all h-[40%]"></div>
+<div class="flex-1 bg-primary/10 rounded-t-sm hover:bg-primary/20 transition-all h-[45%]"></div>
+<div class="flex-1 bg-primary/10 rounded-t-sm hover:bg-primary/20 transition-all h-[42%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm hover:bg-primary/30 transition-all h-[55%]"></div>
+<div class="flex-1 bg-primary/10 rounded-t-sm hover:bg-primary/20 transition-all h-[50%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm hover:bg-primary/30 transition-all h-[65%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm hover:bg-primary/40 transition-all h-[75%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm hover:bg-primary/50 transition-all h-[85%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm hover:bg-primary/40 transition-all h-[70%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm hover:bg-primary/60 transition-all h-[95%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm hover:bg-primary/40 transition-all h-[60%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm hover:bg-primary/30 transition-all h-[55%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm hover:bg-primary/50 transition-all h-[80%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm hover:bg-primary/60 transition-all h-[90%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm hover:bg-primary/70 transition-all h-[100%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-xs text-[#617589] dark:text-gray-400">
+<span>Oct 17</span>
+<span>Oct 24</span>
+<span>Oct 31</span>
+<span>Nov 07</span>
+<span>Nov 15</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1e2936] rounded-xl border border-[#dbe0e6] dark:border-[#2a343e] p-6">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold mb-6">Occupancy by Route</h3>
+<div class="space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-[#111418] dark:text-white">NY → Boston</span>
+<span class="text-[#617589] dark:text-gray-400">92%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-[92%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-[#111418] dark:text-white">SF → LA</span>
+<span class="text-[#617589] dark:text-gray-400">85%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-[#111418] dark:text-white">Chicago → Detroit</span>
+<span class="text-[#617589] dark:text-gray-400">74%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[74%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-[#111418] dark:text-white">Austin → Houston</span>
+<span class="text-[#617589] dark:text-gray-400">68%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+<div class="bg-yellow-500 h-full w-[68%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-[#111418] dark:text-white">Miami → Orlando</span>
+<span class="text-[#617589] dark:text-gray-400">52%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+<div class="bg-red-400 h-full w-[52%]"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                        View Detailed Routes <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1e2936] rounded-xl border border-[#dbe0e6] dark:border-[#2a343e] overflow-hidden">
+<div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-[#dbe0e6] dark:border-[#2a343e]">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Top Performing Routes</h3>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-white border border-[#dbe0e6] dark:bg-[#2a343e] dark:border-[#2a343e] text-[#111418] dark:text-white text-sm font-bold gap-2">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+<span>PDF</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-white border border-[#dbe0e6] dark:bg-[#2a343e] dark:border-[#2a343e] text-[#111418] dark:text-white text-sm font-bold gap-2">
+<span class="material-symbols-outlined text-lg">description</span>
+<span>Excel</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-[#253241] border-b border-[#dbe0e6] dark:border-[#2a343e]">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Route</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Total Bookings</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-center">Avg. Occupancy</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-right">Revenue</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbe0e6] dark:divide-[#2a343e]">
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#111418] dark:text-white">New York → Boston</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium">1,482</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2 py-1 rounded text-xs font-bold">92.4%</span>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">$62,985.00</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                    High Growth
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#111418] dark:text-white">SF → Los Angeles</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium">954</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-1 rounded text-xs font-bold">85.1%</span>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">$40,545.00</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                    Stable
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#111418] dark:text-white">Chicago → Detroit</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium">721</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-2 py-1 rounded text-xs font-bold">74.2%</span>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">$23,432.50</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                    Seasonal
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#111418] dark:text-white">Miami → Orlando</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium">412</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-1 rounded text-xs font-bold">52.8%</span>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">$15,617.50</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
+                                    Underperforming
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-gray-50 dark:bg-[#253241] border-t border-[#dbe0e6] dark:border-[#2a343e] text-center">
+<button class="text-sm font-bold text-primary hover:text-primary/80">View Full List of 24 Routes</button>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-6 px-10 border-t border-[#f0f2f4] dark:border-[#2a343e] text-center text-[#617589] dark:text-gray-400 text-sm">
+<p>© 2023 BusAdmin Operator Dashboard. All rights reserved.</p>
+</footer>
+</div>
+
+</body></html>

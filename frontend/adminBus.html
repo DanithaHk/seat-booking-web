@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Buses - BusAdmin</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white min-h-screen">
+
+  <div class="flex flex-col min-h-screen w-full overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 flex items-center justify-between px-10 py-3 bg-white dark:bg-background-dark border-b border-[#f0f2f4] dark:border-[#2a343e]">
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-4 text-primary">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined">directions_bus</span>
+          </div>
+          <h2 class="text-lg font-bold text-[#111418] dark:text-white tracking-tight">BusAdmin</h2>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-9">
+        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Dashboard</a>
+        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Bookings</a>
+        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Schedules</a>
+        <a href="#" class="text-sm font-bold text-primary border-b-2 border-primary py-1">Buses</a>
+        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Reports</a>
+      </nav>
+
+      <div class="flex items-center gap-2 border-l border-[#f0f2f4] dark:border-[#2a343e] pl-6">
+        <button class="w-10 h-10 rounded-lg bg-[#f0f2f4] dark:bg-[#1e2936] flex items-center justify-center text-[#111418] dark:text-white">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+        </button>
+        <button class="w-10 h-10 rounded-lg bg-[#f0f2f4] dark:bg-[#1e2936] flex items-center justify-center text-[#111418] dark:text-white">
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+        </button>
+        <div class="w-10 h-10 rounded-full border-2 border-primary/20 bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAW0dSR1IK5amWTuRSXkdjepaYEy5-P3U6VY7mkQg-u4rybvUYsQEC5eaBaBBQniAZq1mvvPDEFnOwA21P-fvOCuxF-zX4jduaLlFhXAjCSHVvjIbxw_fc0YetaKMzamRms0wJpWdiLvDJ4A1qNCXxgOgfa0hCASq0oKN0F6Jnf98_ACYnXmajCpbJdBDZ-1jVxW79er7ZawUK8XP_YYIeQbunLY2g7HgaBcplmfF8BLDrrsasLwlEyFLcr5jAfZftLF4hHh0aOmV8');"></div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-10 lg:px-20 py-8">
+
+      <!-- Breadcrumb -->
+      <div class="flex flex-wrap gap-2 py-2 text-sm font-medium text-[#617589] dark:text-gray-400">
+        <a href="#" class="hover:text-primary">Dashboard</a>
+        <span>/</span>
+        <span class="text-[#111418] dark:text-white font-bold"> Buses</span>
+      </div>
+
+      <!-- Header Info -->
+      <div class="flex flex-wrap justify-between items-end gap-3 py-4">
+        <div>
+          <h1 class="text-4xl font-black text-[#111418] dark:text-white tracking-tight">Manage Buses</h1>
+          <p class="text-base text-[#617589] dark:text-gray-400">Monitor vehicle status, capacity, and distribution across your operations.</p>
+        </div>
+        <button id="addBusBtn" class="flex items-center gap-2 px-5 h-11 bg-primary text-white rounded-lg font-bold shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined text-lg">add</span>
+          <span>Add New Bus</span>
+        </button>
+      </div>
+    
+
+        <!-- Modal Background -->
+        <div id="addBusModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-[#1e2936] rounded-xl w-full max-w-lg p-6 relative shadow-xl">
+                <!-- Close Button -->
+                <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+
+                <h2 class="text-xl font-bold text-[#111418] dark:text-white mb-4">Add New Bus</h2>
+
+                <!-- Bus Form -->
+                <form class="flex flex-col gap-4">
+                <div>
+                    <label class="text-sm font-medium text-[#617589] dark:text-gray-400">License Plate</label>
+                    <input type="text" placeholder="Enter License Plate" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Model</label>
+                    <input type="text" placeholder="Enter Bus Model" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Total Seats</label>
+                    <input type="number" placeholder="Enter Total Seats" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Fuel Type</label>
+                    <select class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50">
+                    <option>Diesel</option>
+                    <option>Hybrid</option>
+                    <option>Electric</option>
+                    </select>
+                </div>
+                <button type="submit" class="mt-2 w-full h-10 bg-primary text-white rounded-lg font-bold hover:bg-blue-600 transition-colors">
+                    Add Bus
+                </button>
+                </form>
+            </div>
+        </div>
+
+      <!-- Filters -->
+      <div class="bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] rounded-t-xl mt-4 px-6 py-4 flex flex-wrap gap-4">
+        <div class="relative">
+          <select class="appearance-none bg-[#f0f2f4] dark:bg-[#2a343e] text-[#111418] dark:text-white px-4 py-2 pr-10 rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/50 border-none">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Maintenance</option>
+            <option>Out of Service</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-lg pointer-events-none">expand_more</span>
+        </div>
+      </div>
+
+      <!-- Bus Table -->
+      <div class="bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] rounded-b-xl overflow-hidden mt-0">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-50 dark:bg-[#253241] border-b border-[#dbe0e6] dark:border-[#2a343e]">
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Bus ID</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">License Plate</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Model</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-center">Total Seats</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Fuel Type</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Current Status</th>
+                <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#dbe0e6] dark:divide-[#2a343e]">
+              <!-- Example row -->
+              <tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+                <td class="px-6 py-4 font-bold text-primary">#BUS-702</td>
+                <td class="px-6 py-4"><span class="font-mono font-bold px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white">NY-4522-XP</span></td>
+                <td class="px-6 py-4">
+                  <div class="flex flex-col">
+                    <span class="font-medium">Volvo 9700 Luxury</span>
+                    <span class="text-xs text-[#617589] dark:text-gray-400">Manufacturing Year: 2022</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-center font-bold">52</td>
+                <td class="px-6 py-4 text-sm">Diesel / Hybrid</td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-700 dark:bg-green-400"></span> Active
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right flex gap-2 justify-end">
+                  <button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500">
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+              <!-- Repeat other rows similarly -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between px-6 py-4 bg-gray-50 dark:bg-[#253241] border-t border-[#dbe0e6] dark:border-[#2a343e]">
+          <span class="text-sm text-[#617589] dark:text-gray-400">Showing 1 to 4 of 48 buses</span>
+          <div class="flex gap-2">
+            <button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] disabled:opacity-50" disabled>
+              <span class="material-symbols-outlined text-lg">chevron_left</span>
+            </button>
+            <button class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-white font-bold text-sm">1</button>
+            <button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] text-sm font-medium">2</button>
+            <button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] text-sm font-medium">3</button>
+            <span class="text-gray-400 px-1">...</span>
+            <button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936]">
+              <span class="material-symbols-outlined text-lg">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-6 px-10 border-t border-[#f0f2f4] dark:border-[#2a343e] text-center text-sm text-[#617589] dark:text-gray-400">
+      © 2023 BusAdmin Fleet Management System. All rights reserved.
+    </footer>
+
+  </div>
+  <!-- JS for Modal -->
+    <script>
+        const modal = document.getElementById('addBusModal');
+        const openBtn = document.getElementById('addBusBtn');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
+    </script>
+</body>
+
+</html>

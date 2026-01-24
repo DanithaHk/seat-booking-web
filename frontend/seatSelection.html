@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Seat Selection</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px",
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Custom Scrollbar -->
+  <style>
+    .seat-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .seat-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .seat-container::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 20px;
+    }
+    .dark .seat-container::-webkit-scrollbar-thumb {
+      background-color: #334155;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col font-display bg-background-light text-[#111418] dark:bg-background-dark dark:text-white">
+
+  <!-- Header -->
+  <header class="bg-white dark:bg-background-dark border-b border-[#f0f2f4] dark:border-gray-800 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">directions_bus</span>
+      <h1 class="text-xl font-extrabold">BusBooker</h1>
+    </div>
+
+    <nav class="hidden md:flex gap-8 text-sm font-semibold">
+      <a href="/frontend/index.html" class="hover:text-primary">Home</a>
+      <a href="/frontend/myBooking.html" class="hover:text-primary">My Bookings</a>
+      <a href="/frontend/help&support.html" class="hover:text-primary">Help</a>
+    </nav>
+
+    <button class="bg-primary text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-600">
+      Login / Sign Up
+    </button>
+  </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-6xl flex flex-col lg:flex-row gap-8">
+
+      <!-- Seat Selection -->
+      <section class="flex-1 flex flex-col gap-6">
+        <!-- Bus Info -->
+        <div class="flex flex-col gap-3">
+          <h2 class="text-3xl sm:text-4xl font-black leading-tight tracking-tight">Select Your Seats</h2>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-base font-normal text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">directions_bus</span> Express Line #402</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 10:00 AM</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">route</span> New York to Boston</span>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap gap-3">
+          <div class="flex h-8 items-center gap-x-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2632] pl-2 pr-4">
+            <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
+            <p class="text-sm font-medium text-[#111418] dark:text-white">Available</p>
+          </div>
+          <div class="flex h-8 items-center gap-x-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2632] pl-2 pr-4">
+            <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+            <p class="text-sm font-medium text-[#111418] dark:text-white">Selected</p>
+          </div>
+          <div class="flex h-8 items-center gap-x-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2632] pl-2 pr-4">
+            <span class="material-symbols-outlined text-gray-400 text-[20px]">cancel</span>
+            <p class="text-sm font-medium text-[#111418] dark:text-white">Booked</p>
+          </div>
+          
+        </div>
+
+        <!-- Seat Grid -->
+        <div class="relative w-full max-w-[500px] mx-auto lg:mx-0 bg-white dark:bg-[#1a2632] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 sm:p-8">
+          <div class="flex justify-end mb-8 border-b border-dashed border-gray-200 dark:border-gray-600 pb-4">
+            <div class="flex flex-col items-center gap-1 opacity-50">
+              <span class="material-symbols-outlined text-4xl">sports_motorsports</span>
+              <span class="text-xs font-medium uppercase tracking-wider">Driver</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-5 gap-y-6 gap-x-2 sm:gap-x-4 place-items-center">
+            <!-- Example Seat -->
+            <button class="group flex flex-col items-center gap-2 w-12 sm:w-14" title="Select Seat 1A">
+              <div class="relative flex items-center justify-center w-full aspect-square rounded-xl border border-green-500/50 bg-green-50 dark:bg-green-900/10 text-green-600 dark:text-green-400 transition-all duration-300 ease-out group-hover:bg-yellow-500 group-hover:text-white group-hover:border-yellow-500 group-hover:shadow-lg group-hover:shadow-green-500/30 group-hover:-translate-y-1">
+                <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">chair</span>
+              </div>
+              <span class="text-xs font-bold text-gray-500 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">1A</span>
+            </button>
+            <button class="group flex flex-col items-center gap-2 w-12 sm:w-14" title="Select Seat 1A">
+              <div class="relative flex items-center justify-center w-full aspect-square rounded-xl border border-green-500/50 bg-green-50 dark:bg-green-900/10 text-green-600 dark:text-green-400 transition-all duration-300 ease-out group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 group-hover:shadow-lg group-hover:shadow-green-500/30 group-hover:-translate-y-1">
+                <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">chair</span>
+              </div>
+              <span class="text-xs font-bold text-gray-500 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">1A</span>
+            </button>
+            <!-- Add other seats following the same pattern -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking Summary -->
+      <aside class="w-full lg:w-[360px] flex-none sticky top-24 flex flex-col gap-4">
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2632] p-4 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-primary">
+              <span class="material-symbols-outlined">directions_bus</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-[#111418] dark:text-white">New York <span class="text-gray-400 mx-1">→</span> Boston</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Today, 10:00 AM</p>
+            </div>
+          </div>
+          <div class="flex justify-between items-center text-sm border-t border-gray-100 dark:border-gray-700 pt-3">
+            <span class="text-gray-500">Operator</span>
+            <span class="font-medium text-[#111418] dark:text-white">Express Line #402</span>
+          </div>
+        </div>
+
+        <!-- Booking Summary Box -->
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2632] p-6 shadow-sm flex flex-col gap-4">
+          <h4 class="text-lg font-bold text-[#111418] dark:text-white pb-2 border-b border-gray-100 dark:border-gray-700">Booking Summary</h4>
+          <div class="flex flex-col gap-3">
+            <!-- Example Seat Summary -->
+            <div class="flex justify-between items-center">
+              <div class="flex items-center gap-3">
+                <span class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary font-bold text-sm">2A</span>
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Window Seat</span>
+              </div>
+              <span class="text-sm font-bold text-[#111418] dark:text-white">$25.00</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 mt-2 pt-4 border-t border-gray-100 dark:border-gray-700">
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-500">Subtotal</span>
+              <span class="font-medium text-[#111418] dark:text-white">$50.00</span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-500">Taxes & Fees</span>
+              <span class="font-medium text-[#111418] dark:text-white">$5.00</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-end pt-2">
+            <span class="text-base font-medium text-gray-500">Total Amount</span>
+            <span class="text-2xl font-black text-primary">$55.00</span>
+          </div>
+          <button class="mt-2 w-full rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white hover:bg-blue-600 transition-colors flex justify-center items-center gap-2">
+            <span>Proceed to Payment</span>
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </button>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-background-dark border-t border-[#f0f2f4] dark:border-gray-800 py-10">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">directions_bus</span>
+      <h1 class="text-xl font-extrabold">BusBooker</h1>
+    </div>
+
+      <div class="flex gap-6 text-sm text-[#617589] dark:text-gray-400">
+        <a href="#" class="hover:text-primary">Privacy Policy</a>
+        <a href="#" class="hover:text-primary">Terms of Service</a>
+        <a href="#" class="hover:text-primary">Cookie Policy</a>
+      </div>
+
+      <p class="text-sm text-[#617589] dark:text-gray-400">© 2023 BusBooker. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>View All Bookings - BusAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111418] dark:text-white">
+<div class="relative flex flex-col w-full min-h-screen group/design-root overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2a343e] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">directions_bus</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">BusAdmin</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f2f4] dark:bg-[#1e2936]">
+<div class="text-[#617589] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:outline-0 focus:ring-0 h-full placeholder:text-[#617589] px-4 pl-2 text-base font-normal leading-normal text-[#111418] dark:text-white" placeholder="Search bookings..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary py-1" href="#">Bookings</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Schedules</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Buses</a>
+<a class="text-[#617589] hover:text-primary dark:text-gray-400 dark:hover:text-primary text-sm font-medium leading-normal" href="#">Reports</a>
+</nav>
+<div class="flex gap-2 border-l border-[#f0f2f4] dark:border-[#2a343e] pl-6">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#1e2936] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#1e2936] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Admin user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYYcuFdstOPTVT2YopLgNIBsf7lrI-NCdxlDwPzQk2m_fFSiSdBfPRKTeeUs6vlg1c3q4s8gWglaeZ6W1ZLlG4_TR7TzcnBUrS8Qu43gRUUydvpza1TV18uKxk2fG2sXZNAQNnKZ4BdSH6OcNloFYvmFAAaV1K7IrdN8L8JO7SgXR6SalumRZX5zSE-sJX1EQD9TpdjeWw7mNqmrnkorHLraUcof43XLmCQJoGzDVNak4UYXTUlFdpCwKMjADllBc7ENNMzAYKFac");'></div>
+</div>
+</header>
+<main class="flex-1 px-4 md:px-10 lg:px-20 py-8 max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 py-2">
+<a class="text-[#617589] text-sm font-medium leading-normal hover:text-primary" href="#">Dashboard</a>
+<span class="text-[#617589] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-bold leading-normal">Bookings</span>
+</div>
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-end gap-3 py-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">View All Bookings</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base">Manage and monitor all passenger reservations across your fleet.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-11 px-5 bg-white border border-[#dbe0e6] dark:bg-[#1e2936] dark:border-[#2a343e] text-[#111418] dark:text-white text-sm font-bold gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Export CSV</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-11 px-5 bg-primary text-white text-sm font-bold gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>New Booking</span>
+</button>
+</div>
+</div>
+<!-- Stats Bar -->
+<div class="flex flex-wrap gap-4 py-6">
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Total Bookings</p>
+<span class="material-symbols-outlined text-primary">confirmation_number</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">1,284</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#078838] text-sm">trending_up</span>
+<p class="text-[#078838] text-sm font-bold">+12% from last month</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Today's Bookings</p>
+<span class="material-symbols-outlined text-primary">today</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">156</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#078838] text-sm">trending_up</span>
+<p class="text-[#078838] text-sm font-bold">+5% since 8 AM</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-semibold uppercase tracking-wider">Occupancy Rate</p>
+<span class="material-symbols-outlined text-primary">airline_seat_recline_normal</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">82%</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#078838] text-sm">trending_up</span>
+<p class="text-[#078838] text-sm font-bold">+2.4% avg daily</p>
+</div>
+</div>
+</div>
+<!-- Toolbar & Filter -->
+<div class="bg-white dark:bg-[#1e2936] rounded-t-xl border border-[#dbe0e6] dark:border-[#2a343e] border-b-0 mt-4">
+<div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4">
+<div class="flex flex-wrap items-center gap-4">
+<div class="relative">
+<select class="appearance-none bg-[#f0f2f4] dark:bg-[#2a343e] border-none rounded-lg px-4 py-2 pr-10 text-sm font-medium focus:ring-2 focus:ring-primary/50 text-[#111418] dark:text-white">
+<option>All Routes</option>
+<option>New York → Boston</option>
+<option>San Francisco → LA</option>
+<option>Chicago → Detroit</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none text-lg">expand_more</span>
+</div>
+<div class="relative">
+<input class="bg-[#f0f2f4] dark:bg-[#2a343e] border-none rounded-lg px-4 py-2 text-sm font-medium focus:ring-2 focus:ring-primary/50 text-[#111418] dark:text-white" type="date" value="2023-11-15"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0f2f4] dark:bg-[#2a343e] text-[#111418] dark:text-white text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+<span>More Filters</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-[#617589] dark:text-gray-400">View density:</span>
+<div class="flex bg-[#f0f2f4] dark:bg-[#2a343e] rounded-lg p-1">
+<button class="p-1 px-3 rounded-md bg-white dark:bg-primary shadow-sm text-xs font-bold">Comfortable</button>
+<button class="p-1 px-3 rounded-md text-[#617589] dark:text-gray-400 text-xs font-medium">Compact</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white dark:bg-[#1e2936] border border-[#dbe0e6] dark:border-[#2a343e] rounded-b-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-[#253241] border-b border-[#dbe0e6] dark:border-[#2a343e]">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Booking ID</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Passenger</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Route</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Schedule</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-center">Seat</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbe0e6] dark:divide-[#2a343e]">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#BK-1024</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-[#111418] dark:text-white">Alex Johnson</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">alex.j@example.com</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-medium">New York</span>
+<span class="material-symbols-outlined text-sm text-[#617589]">arrow_forward</span>
+<span class="font-medium">Boston</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium">Nov 15, 2023</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">08:30 AM</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded text-sm font-bold">12A</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+<span class="size-1.5 rounded-full bg-green-700 dark:bg-green-400"></span>
+                                        Confirmed
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-500">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#BK-1025</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-[#111418] dark:text-white">Sarah Wilson</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">s.wilson@mail.com</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-medium">San Francisco</span>
+<span class="material-symbols-outlined text-sm text-[#617589]">arrow_forward</span>
+<span class="font-medium">Los Angeles</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium">Nov 15, 2023</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">10:15 AM</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded text-sm font-bold">04C</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">
+<span class="size-1.5 rounded-full bg-yellow-700 dark:bg-yellow-400"></span>
+                                        Pending
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-500">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#BK-1026</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-[#111418] dark:text-white">Marcus Chen</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">m.chen@service.io</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-medium">Chicago</span>
+<span class="material-symbols-outlined text-sm text-[#617589]">arrow_forward</span>
+<span class="font-medium">Detroit</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium">Nov 16, 2023</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">01:00 PM</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded text-sm font-bold">21B</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
+<span class="size-1.5 rounded-full bg-red-700 dark:bg-red-400"></span>
+                                        Cancelled
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-500">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#BK-1027</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-[#111418] dark:text-white">Elena Rodriguez</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">elena.r@provider.com</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-medium">Boston</span>
+<span class="material-symbols-outlined text-sm text-[#617589]">arrow_forward</span>
+<span class="font-medium">New York</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium">Nov 16, 2023</span>
+<span class="text-xs text-[#617589] dark:text-gray-400">04:45 PM</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded text-sm font-bold">08A</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+<span class="size-1.5 rounded-full bg-green-700 dark:bg-green-400"></span>
+                                        Confirmed
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-500">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between px-6 py-4 bg-gray-50 dark:bg-[#253241] border-t border-[#dbe0e6] dark:border-[#2a343e]">
+<span class="text-sm text-[#617589] dark:text-gray-400">Showing 1 to 4 of 1,284 bookings</span>
+<div class="flex gap-2">
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-white font-bold text-sm">1</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] transition-colors text-sm font-medium">2</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] transition-colors text-sm font-medium">3</button>
+<span class="flex items-center px-1 text-gray-400">...</span>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#dbe0e6] dark:border-[#2a343e] hover:bg-white dark:hover:bg-[#1e2936] transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Footer (Minimal) -->
+<footer class="mt-auto py-6 px-10 border-t border-[#f0f2f4] dark:border-[#2a343e] text-center text-[#617589] dark:text-gray-400 text-sm">
+<p>© 2023 BusAdmin Operator Dashboard. All rights reserved.</p>
+</footer>
+</div>
+</body></html>

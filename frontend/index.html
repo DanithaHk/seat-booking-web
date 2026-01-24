@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusBooker – Seat Booking</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6247aa',
+            darkbg: '#0f172a'
+          },
+          fontFamily: {
+            display: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 font-display text-gray-900">
+
+<!-- NAVBAR -->
+<header class="shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">directions_bus</span>
+      <h1 class="text-xl font-extrabold">BusBooker</h1>
+    </div>
+
+    <nav class="hidden md:flex gap-8 text-sm font-semibold">
+      <a href="#" class="hover:text-primary">Home</a>
+      <a href="#" class="hover:text-primary">My Bookings</a>
+      <a href="#" class="hover:text-primary">Help</a>
+    </nav>
+
+    <button class="bg-primary text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-600">
+      Login / Sign Up
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center" 
+         style="background-image: url('/frontend/assest/image/close-up-traffic-road-city-against-sky_1048944-19970360.jpg'); background-size: cover; background-position: center;">
+  
+  <!-- LEFT -->
+  <div class="bg-opacity-80 backdrop-blur-md rounded-2xl p-8 max-w-lg mx-auto">
+    <span class="inline-flex items-center gap-2 bg-blue-100 text-primary px-4 py-1 rounded-full text-xs font-bold mb-4">
+      <span class="material-symbols-outlined text-sm">verified</span>
+      Trusted by 1M+ Users
+    </span>
+
+    <h2 class="text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+      Book Your Bus Seat <span class="text-primary">Easily</span>
+    </h2>
+
+    <p class="text-gray-600 mb-8">
+      Choose your destination, select seats visually, and travel comfortably.
+    </p>
+
+    <!-- SEARCH CARD -->
+    <div class="bg-white rounded-2xl shadow-xl p-6 space-y-4">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-bold text-gray-500">FROM</label>
+          <input type="text" placeholder="Colombo"
+                 class="w-full mt-1 h-11 rounded-lg bg-gray-100 px-4 outline-none focus:ring-2 focus:ring-primary"/>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-gray-500">TO</label>
+          <input type="text" placeholder="Kandy"
+                 class="w-full mt-1 h-11 rounded-lg bg-gray-100 px-4 outline-none focus:ring-2 focus:ring-primary"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-xs font-bold text-gray-500">JOURNEY DATE</label>
+        <input type="date"
+               class="w-full mt-1 h-11 rounded-lg bg-gray-100 px-4 outline-none focus:ring-2 focus:ring-primary"/>
+      </div>
+
+      <button onclick="openModal()" 
+              class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-purple-200 flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">search</span>
+        Search Buses
+      </button>
+    </div>
+  </div>
+  <div class="relative"></div>
+</section>
+
+<!-- FEATURES -->
+<section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-6">
+  <!-- Feature 1 -->
+  <div class="relative group bg-purple-50 rounded-2xl p-6 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+    <div class="bg-purple-200 w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <span class="material-symbols-outlined text-primary">confirmation_number</span>
+    </div>
+    <h3 class="font-bold mb-1">Easy Booking</h3>
+    <p class="text-sm text-gray-600">Book your seat in just 3 simple steps</p>
+  </div>
+
+  <!-- Feature 2 -->
+  <div class="relative group bg-cyan-50 rounded-2xl p-6 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+    <div class="bg-cyan-200 w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4 group-hover:rotate-6 group-hover:scale-110 transition-transform duration-300">
+      <span class="material-symbols-outlined text-cyan-700">chair</span>
+    </div>
+    <h3 class="font-bold mb-1">Choose Your Seat</h3>
+    <p class="text-sm text-gray-600">Select your preferred seat from layout</p>
+  </div>
+
+  <!-- Feature 3 -->
+  <div class="relative group bg-yellow-50 rounded-2xl p-6 text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+    <div class="bg-yellow-200 w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <span class="material-symbols-outlined text-yellow-700">lock</span>
+    </div>
+    <h3 class="font-bold mb-1">Secure Payment</h3>
+    <p class="text-sm text-gray-600">Pay safely with secure payment system</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 py-10">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">directions_bus</span>
+      <h1 class="text-xl font-extrabold">BusBooker</h1>
+    </div>
+    <div class="flex gap-6 text-sm text-gray-600 dark:text-gray-400">
+      <a href="#" class="hover:text-primary">Privacy Policy</a>
+      <a href="#" class="hover:text-primary">Terms of Service</a>
+      <a href="#" class="hover:text-primary">Cookie Policy</a>
+    </div>
+    <p class="text-sm text-gray-600 dark:text-gray-400">© 2023 BusBooker. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- BUS MODAL -->
+<div id="busModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+  <div class="relative w-full max-w-3xl bg-white dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <!-- HEADER -->
+    <header class="flex items-center justify-between border-b px-6 py-5">
+      <div>
+        <h2 class="text-2xl font-black">Available Buses</h2>
+        <p class="text-sm text-gray-500">Colombo → Kandy • Selected Date</p>
+      </div>
+      <button onclick="closeModal()" class="p-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Sample Bus Card -->
+      <div class="flex flex-col md:flex-row gap-5 border rounded-xl p-5 hover:shadow-lg transition-shadow">
+        <div class="flex-1 space-y-3">
+          <div class="flex justify-between">
+            <div>
+              <p class="text-primary text-xl font-extrabold">08:00 AM</p>
+              <span class="text-xs text-gray-400">Departure</span>
+            </div>
+            <div>
+              <p class="text-xl font-extrabold">12:30 PM</p>
+              <span class="text-xs text-gray-400">Arrival</span>
+            </div>
+          </div>
+          <div class="flex gap-2 flex-wrap">
+            <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold">AC Sleeper</span>
+            <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold">12 seats left</span>
+          </div>
+        </div>
+        <div class="text-right flex flex-col justify-between">
+          <p class="text-3xl font-black">$45</p>
+          <button class="bg-primary text-white px-6 py-2 rounded-lg font-bold" onclick="navigateToSeatSelection()">Select Seats</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t px-6 py-4 flex justify-between items-center">
+      <p class="text-sm text-gray-500">Prices include taxes & insurance</p>
+      <button onclick="closeModal()" class="px-5 py-2 border rounded-lg font-bold">Close</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById("busModal").classList.remove("hidden");
+    document.getElementById("busModal").classList.add("flex");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeModal() {
+    document.getElementById("busModal").classList.add("hidden");
+    document.getElementById("busModal").classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+  }
+  function navigateToSeatSelection() {
+    window.location.href = "seatSelection.html";
+  }
+</script>
+
+</body>
+</html>

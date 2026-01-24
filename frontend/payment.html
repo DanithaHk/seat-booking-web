@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Payment Gateway - BusBooker</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            display: ["Plus Jakarta Sans", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px",
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Custom Scrollbar -->
+  <style>
+    .seat-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .seat-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .seat-container::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 20px;
+    }
+    .dark .seat-container::-webkit-scrollbar-thumb {
+      background-color: #334155;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col font-display bg-background-light text-[#111418] dark:bg-background-dark dark:text-white">
+<!-- Header -->
+<header class="bg-white dark:bg-background-dark border-b border-[#f0f2f4] dark:border-gray-800 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">
+        directions_bus
+      </span>
+      <h1 class="text-xl font-extrabold">BusBooker</h1>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex gap-8 text-sm font-semibold">
+      <a href="/frontend/index.html" class="hover:text-primary">Home</a>
+      <a href="/frontend/myBooking.html" class="hover:text-primary">My Bookings</a>
+      <a href="/frontend/help&support.html" class="hover:text-primary">Help</a>
+    </nav>
+
+    <!-- Desktop Button -->
+    <button class="hidden md:block bg-primary text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-600 transition">
+      Login / Sign Up
+    </button>
+
+    <!-- Burger Button (Mobile) -->
+    <button id="burgerBtn" class="md:hidden focus:outline-none">
+      <span class="material-symbols-outlined text-3xl">
+        menu
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-in-out bg-white dark:bg-background-dark border-t dark:border-gray-800"
+  >
+    <nav class="flex flex-col px-6 py-4 gap-4 text-sm font-semibold">
+      <a href="/frontend/index.html" class="hover:text-primary">Home</a>
+      <a href="/frontend/myBooking.html" class="hover:text-primary">My Bookings</a>
+      <a href="/frontend/help&support.html" class="hover:text-primary">Help</a>
+
+      <button class="mt-3 bg-primary text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition">
+        Login / Sign Up
+      </button>
+    </nav>
+  </div>
+</header>
+
+
+
+    <!-- Main Content -->
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- Left Column: Payment Details -->
+            <div class="lg:col-span-7 flex flex-col gap-6">
+
+                <!-- Heading & Timer -->
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                        <h1
+                            class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-2">
+                            Personal Details</h1>
+                        <p class="text-slate-500 dark:text-slate-400">Complete your details to reserve your
+                            seats.</p>
+                    </div>
+                </div>
+
+                <!-- Payment Card -->
+                <div class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+
+                   
+
+                    <!-- Payment Form -->
+                    <div class="p-6 sm:p-8 flex flex-col gap-6">
+                        <!-- Card Number -->
+                        <div class="flex flex-col gap-2">
+                            <label for="full-name"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Full Name </label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <span class="material-symbols-outlined text-[20px]">person</span>
+                                   
+                                </div>
+                                <input type="text" id="full-name" placeholder="John Doe"
+                                    class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm h-12 transition-all" />
+                            </div>
+                        </div>
+
+                        <!-- Name on Card -->
+                        <div class="flex flex-col gap-2">
+                            <label for="contact-number"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">contact number</label>
+                            <input type="text" id="contact-number" placeholder="e.g. 07X XXX XXXX"
+                                class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm h-12" />
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label for="email-address"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <span class="material-symbols-outlined text-[20px]">mail</span>
+                                   
+                                </div>
+                                <input type="text" id="email-address" placeholder="John Doe@gmail.com"
+                                    class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm h-12 transition-all" />
+                            </div>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div
+                            class="mt-4 pt-6 border-t border-slate-100 dark:border-slate-700 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-green-500">lock_clock</span>
+                                <span>256-bit SSL Encrypted</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-blue-500">verified_user</span>
+                                <span>PCI DSS Compliant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Booking Summary -->
+            <div class="lg:col-span-5 relative">
+                <div class="sticky top-24 flex flex-col gap-6">
+                    <!-- Summary Card -->
+                    <div
+                        class="bg-white dark:bg-[#1a2632] rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/30">
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Booking Summary</h2>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Please review your trip details before
+                                paying.</p>
+                        </div>
+
+                        <div class="p-6 flex flex-col gap-6">
+                            <!-- Trip Details -->
+                            <div class="flex flex-col gap-4 relative">
+                                <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+                                <div class="flex gap-4 relative">
+                                    <div
+                                        class="w-4 h-4 rounded-full border-2 border-primary bg-white dark:bg-slate-900 z-10 shrink-0 mt-1"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">From</span>
+                                        <span class="text-base font-bold text-slate-900 dark:text-white">New York (NYC)</span>
+                                        <span class="text-sm text-slate-500">Port Authority Bus Terminal</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 relative">
+                                    <div
+                                        class="w-4 h-4 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 z-10 shrink-0 mt-1"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">To</span>
+                                        <span class="text-base font-bold text-slate-900 dark:text-white">Boston (BOS)</span>
+                                        <span class="text-sm text-slate-500">South Station Bus Terminal</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-dashed border-slate-200 dark:border-slate-700" />
+
+                            <!-- Pricing -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-slate-600 dark:text-slate-400">Base Fare (2x)</span>
+                                    <span class="font-medium text-slate-900 dark:text-white">$40.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-slate-600 dark:text-slate-400">Tax & Fees</span>
+                                    <span class="font-medium text-slate-900 dark:text-white">$5.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm text-green-600 dark:text-green-400">
+                                    <span>Discount (Early Bird)</span>
+                                    <span class="font-medium">-$0.00</span>
+                                </div>
+                                <div
+                                    class="mt-2 pt-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                                    <span class="text-base font-bold text-slate-900 dark:text-white">Total Amount</span>
+                                    <span class="text-2xl font-black text-primary">$45.00</span>
+                                </div>
+                            </div>
+
+                            <!-- Pay Button -->
+                            <button
+                                class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-lg transition-all shadow-md hover:shadow-lg active:scale-[0.98]">
+                                <span>Pay $45.00 Now</span>
+                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                            </button>
+                            <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-[-0.5rem]">
+                                By clicking pay, you agree to our <a href="#"
+                                    class="underline hover:text-primary">Terms of Service</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-8 bg-white dark:bg-[#101922] border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-slate-500">© 2023 BusBooker Inc. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Facebook">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988H7.898v-2.89h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                    aria-label="Twitter">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const burgerBtn = document.getElementById("burgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        let isOpen = false;
+
+        burgerBtn.addEventListener("click", () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+            mobileMenu.classList.remove("max-h-0", "opacity-0");
+            mobileMenu.classList.add("max-h-96", "opacity-100");
+            } else {
+            mobileMenu.classList.add("max-h-0", "opacity-0");
+            mobileMenu.classList.remove("max-h-96", "opacity-100");
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+            mobileMenu.classList.add("max-h-0", "opacity-0");
+            mobileMenu.classList.remove("max-h-96", "opacity-100");
+            isOpen = false;
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
