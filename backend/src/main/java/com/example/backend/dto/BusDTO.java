@@ -15,7 +15,7 @@ public class BusDTO {
     private BusType busType;
     private Integer totalSeats;
     private Status status;
-    private LocalDateTime createdAt;
+    
 
     public Integer getBusId() { return busId; }
     public void setBusId(Integer busId) { this.busId = busId; }
@@ -38,6 +38,5 @@ public class BusDTO {
     public Status getStatus() { return status; }
     public void setStatus(Status status) { this.status = status; }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+   
 }
