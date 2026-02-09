@@ -11,3 +11,4 @@ public interface BusRepository extends JpaRepository<Bus, Long> {
    Bus findByBusNumber(String busNumber);
 
 }
+    

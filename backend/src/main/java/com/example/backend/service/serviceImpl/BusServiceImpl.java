@@ -2,8 +2,6 @@ package com.example.backend.service.serviceImpl;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
