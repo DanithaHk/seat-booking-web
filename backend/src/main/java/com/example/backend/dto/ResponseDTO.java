@@ -1,8 +1,7 @@
 package com.example.backend.dto;
 
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class ResponseDTO {
     private int statusCode;
     private String message;

@@ -6,10 +6,9 @@ import java.util.List;
 import com.example.backend.dto.RouteDTO;
 public interface RouteService {
 
-    int createRoute(RouteDTO routeDTO);
-    // delete route by id
-    int deleteRouteById(Integer id);
-
-    // Get all routes
-    List<RouteDTO> getAllRoutes();
+    public List<RouteDTO> getAllRoutes();
+    public RouteDTO getRouteById(Integer id);
+    public int createRoute(RouteDTO routeDTO);
+    public int updateRoute(Integer id, RouteDTO routeDTO);
+    public int deleteRouteById(Integer id);
 }

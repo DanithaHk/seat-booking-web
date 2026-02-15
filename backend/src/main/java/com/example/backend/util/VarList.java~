@@ -1,5 +1,5 @@
+package lk.ijse.voaestheticlounge.util;
 
-package com.example.backend.utill;
 public class VarList {
     public static final int Continue = 100;
     public static final int Switching_Protocols = 101;
@@ -55,5 +55,5 @@ public class VarList {
     public static final int Loop_Detected = 508;
     public static final int Not_Extended = 510;
     public static final int Network_Authentication_Required = 511;
-
+   
 }

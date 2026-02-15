@@ -11,7 +11,7 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "schedule_id")
-    private Integer scheduleId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bus_id", nullable = false)
@@ -31,15 +31,26 @@ public class Schedule {
     private BigDecimal price;
 
     // Constructors
-    public Schedule() {}
-
-    // Getters & Setters
-    public Integer getScheduleId() {
-        return scheduleId;
+    public Schedule() {
     }
 
-    public void setScheduleId(Integer scheduleId) {
-        this.scheduleId = scheduleId;
+    public Schedule(Integer id, Bus bus, Route route, LocalTime departureTime, 
+                    LocalTime arrivalTime, BigDecimal price) {
+        this.id = id;
+        this.bus = bus;
+        this.route = route;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.price = price;
+    }
+
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Bus getBus() {

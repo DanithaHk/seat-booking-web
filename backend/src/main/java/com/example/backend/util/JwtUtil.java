@@ -1,17 +1,20 @@
-package com.example.backend.utill;
-
-import com.example.backend.dto.UserDTO;
-import io.jsonwebtoken.*;
+package com.example.backend.util;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.example.backend.dto.UserDTO;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 
 @Component
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:otherprops.properties")

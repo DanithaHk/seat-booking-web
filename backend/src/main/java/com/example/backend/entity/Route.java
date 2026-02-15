@@ -10,7 +10,7 @@ public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_id")
-    private Integer routeId;
+    private Integer id;
 
     @Column(name = "start_location", nullable = false, length = 100)
     private String startLocation;
@@ -18,22 +18,37 @@ public class Route {
     @Column(name = "end_location", nullable = false, length = 100)
     private String endLocation;
 
-   @Column(name = "distance_km")
+    @Column(name = "distance_km")
     private Double distanceKm;
 
     @Column(name = "created_at", nullable = true, updatable = false)
     private LocalDateTime createdAt;
 
-    // Constructors
-    public Route() {}
-
-    // Getters & Setters
-    public Integer getRouteId() {
-        return routeId;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
     }
 
-    public void setRouteId(Integer routeId) {
-        this.routeId = routeId;
+    // Constructors
+    public Route() {
+    }
+
+    public Route(Integer id, String startLocation, String endLocation, 
+                 Double distanceKm, LocalDateTime createdAt) {
+        this.id = id;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+        this.distanceKm = distanceKm;
+        this.createdAt = createdAt;
+    }
+
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStartLocation() {
@@ -60,9 +75,11 @@ public class Route {
         this.distanceKm = distanceKm;
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
-    
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

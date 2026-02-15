@@ -1,29 +1,35 @@
 package com.example.backend.dto;
 
+import java.time.LocalDateTime;
+
 public class RouteDTO {
 
-    private Integer routeId;
+    private Integer id;
     private String startLocation;
     private String endLocation;
     private Double distanceKm;
+    private LocalDateTime createdAt;
 
     // Constructors
-    public RouteDTO() {}
+    public RouteDTO() {
+    }
 
-    public RouteDTO(Integer routeId, String startLocation, String endLocation, Double distanceKm) {
-        this.routeId = routeId;
+    public RouteDTO(Integer id, String startLocation, String endLocation, 
+                    Double distanceKm, LocalDateTime createdAt) {
+        this.id = id;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.distanceKm = distanceKm;
+        this.createdAt = createdAt;
     }
 
-    // Getters & Setters
-    public Integer getRouteId() {
-        return routeId;
+    // Getters and Setters
+    public Integer getId() {
+        return id;
     }
 
-    public void setRouteId(Integer routeId) {
-        this.routeId = routeId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStartLocation() {
@@ -48,5 +54,13 @@ public class RouteDTO {
 
     public void setDistanceKm(Double distanceKm) {
         this.distanceKm = distanceKm;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

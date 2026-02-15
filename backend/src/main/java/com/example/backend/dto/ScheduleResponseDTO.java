@@ -3,34 +3,33 @@ package com.example.backend.dto;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 
-public class ScheduleDTO {
+/**
+ * DTO for schedule responses with complete bus and route information
+ */
+public class ScheduleResponseDTO {
 
     private Integer id;
-    private Integer busId;
-    private Integer routeId;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
     private BigDecimal price;
-
-    // Additional fields for response (optional - when you need full details)
+    
+    // Bus information
+    private Integer busId;
     private String busNumber;
     private String busModel;
+    private String busType;
+    private Integer totalSeats;
+    private Integer availableSeats;
+    
+    // Route information
+    private Integer routeId;
     private String startLocation;
     private String endLocation;
     private Double distanceKm;
+    private String duration; // calculated field
 
     // Constructors
-    public ScheduleDTO() {
-    }
-
-    public ScheduleDTO(Integer id, Integer busId, Integer routeId, 
-                       LocalTime departureTime, LocalTime arrivalTime, BigDecimal price) {
-        this.id = id;
-        this.busId = busId;
-        this.routeId = routeId;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.price = price;
+    public ScheduleResponseDTO() {
     }
 
     // Getters and Setters
@@ -40,22 +39,6 @@ public class ScheduleDTO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getBusId() {
-        return busId;
-    }
-
-    public void setBusId(Integer busId) {
-        this.busId = busId;
-    }
-
-    public Integer getRouteId() {
-        return routeId;
-    }
-
-    public void setRouteId(Integer routeId) {
-        this.routeId = routeId;
     }
 
     public LocalTime getDepartureTime() {
@@ -82,6 +65,14 @@ public class ScheduleDTO {
         this.price = price;
     }
 
+    public Integer getBusId() {
+        return busId;
+    }
+
+    public void setBusId(Integer busId) {
+        this.busId = busId;
+    }
+
     public String getBusNumber() {
         return busNumber;
     }
@@ -96,6 +87,38 @@ public class ScheduleDTO {
 
     public void setBusModel(String busModel) {
         this.busModel = busModel;
+    }
+
+    public String getBusType() {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
+    }
+
+    public Integer getTotalSeats() {
+        return totalSeats;
+    }
+
+    public void setTotalSeats(Integer totalSeats) {
+        this.totalSeats = totalSeats;
+    }
+
+    public Integer getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(Integer availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public Integer getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Integer routeId) {
+        this.routeId = routeId;
     }
 
     public String getStartLocation() {
@@ -120,5 +143,13 @@ public class ScheduleDTO {
 
     public void setDistanceKm(Double distanceKm) {
         this.distanceKm = distanceKm;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
