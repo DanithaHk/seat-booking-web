@@ -22,7 +22,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
 public class AuthControllerJWT {
 
     @Autowired
@@ -106,6 +105,7 @@ public class AuthControllerJWT {
             response.put("success", true);
             response.put("message", "Login successful");
             response.put("token", token);
+            response.put("data", user);
             return ResponseEntity.ok(response);
 
         } catch (BadCredentialsException e) {

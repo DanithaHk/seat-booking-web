@@ -60,11 +60,12 @@
       </div>
 
       <nav class="hidden md:flex items-center gap-9">
-        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Dashboard</a>
-        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Bookings</a>
-        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Schedules</a>
-        <a href="#" class="text-sm font-bold text-primary border-b-2 border-primary py-1">Buses</a>
-        <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Reports</a>
+        <a href="/frontend/adminDashbord.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Dashboard</a>
+        <a href="/frontend/adminBooking.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Bookings</a>
+        <a href="/frontend/adminShudule.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Schedules</a>
+        <a href="/frontend/adminRoute.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Routes</a>
+        <a href="/frontend/adminBus.html" class="text-sm font-bold text-primary border-b-2 border-primary py-1">Buses</a>
+        <a href="/frontend/adminReport.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Reports</a>
       </nav>
 
       <div class="flex items-center gap-2 border-l border-[#f0f2f4] dark:border-[#2a343e] pl-6">
@@ -112,30 +113,39 @@
                 <h2 class="text-xl font-bold text-[#111418] dark:text-white mb-4">Add New Bus</h2>
 
                 <!-- Bus Form -->
-                <form class="flex flex-col gap-4">
+                <form id="busForm" class="flex flex-col gap-4">
                 <div>
                     <label class="text-sm font-medium text-[#617589] dark:text-gray-400">License Plate</label>
-                    <input type="text" placeholder="Enter License Plate" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                    <input id = "busNumber" type="text" placeholder="Enter License Plate" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
                 </div>
 
                 <div>
                     <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Model</label>
-                    <input type="text" placeholder="Enter Bus Model" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                    <input id="busModel" type="text" placeholder="Enter Bus Model" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
                 </div>
-
+                <div>
+                    <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Bus Type</label>
+                    <select id="busType" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50">
+                    <option>NORMAL</option>
+                    <option>LUXURY</option>
+                    <option>SEMILUXURY</option>
+                    </select>
+                </div>
                 <div>
                     <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Total Seats</label>
-                    <input type="number" placeholder="Enter Total Seats" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
+                    <input id="totalSeats" type="number" placeholder="Enter Total Seats" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50" />
                 </div>
 
                 <div>
                     <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Fuel Type</label>
-                    <select class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50">
-                    <option>Diesel</option>
-                    <option>Hybrid</option>
-                    <option>Electric</option>
+                    <select id="fuelType" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-primary/50">
+                    <option>DIESEL</option>
+                    <option>PETROL</option>
+                    <option>ELECTRIC</option>
+                    <option>HYBRID</option>
                     </select>
                 </div>
+
                 <button type="submit" class="mt-2 w-full h-10 bg-primary text-white rounded-lg font-bold hover:bg-blue-600 transition-colors">
                     Add Bus
                 </button>
@@ -148,9 +158,9 @@
         <div class="relative">
           <select class="appearance-none bg-[#f0f2f4] dark:bg-[#2a343e] text-[#111418] dark:text-white px-4 py-2 pr-10 rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/50 border-none">
             <option>All Status</option>
-            <option>Active</option>
-            <option>Maintenance</option>
-            <option>Out of Service</option>
+            <option>ACTIVE</option>
+            <option>MAINTENANCE</option>
+            <option>INACTIVE</option>
           </select>
           <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-lg pointer-events-none">expand_more</span>
         </div>
@@ -171,7 +181,7 @@
                 <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-[#dbe0e6] dark:divide-[#2a343e]">
+            <tbody class="divide-y divide-[#dbe0e6] dark:divide-[#2a343e]" id="busTableBody">
               <!-- Example row -->
               <tr class="hover:bg-gray-50 dark:hover:bg-[#253241] transition-colors">
                 <td class="px-6 py-4 font-bold text-primary">#BUS-702</td>
@@ -189,18 +199,42 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-green-700 dark:bg-green-400"></span> Active
                   </span>
                 </td>
-                <td class="px-6 py-4 text-right flex gap-2 justify-end">
-                  <button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500">
-                    <span class="material-symbols-outlined">edit</span>
-                  </button>
-                  <button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500">
-                    <span class="material-symbols-outlined">more_vert</span>
-                  </button>
-                </td>
+                 <td class="px-6 py-4 text-right flex gap-2 justify-end">
+                    <button class="editBtn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500" data-busnumber="NY-4522-XP" data-currentstatus="ACTIVE">
+                      <span class="material-symbols-outlined">edit</span>
+                    </button>
+                    <button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-500">
+                      <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                  </td>
               </tr>
               <!-- Repeat other rows similarly -->
             </tbody>
           </table>
+        </div>
+        <!-- Update Status Modal -->
+        <div id="updateStatusModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+          <div class="bg-white dark:bg-[#1e2936] rounded-xl w-full max-w-md p-6 relative shadow-xl">
+            <button id="closeStatusModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h2 class="text-xl font-bold text-[#111418] dark:text-white mb-4">Update Bus Status</h2>
+
+            <div class="flex flex-col gap-4">
+              <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Bus Number</label>
+              <input type="text" id="modalBusNumber" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700" readonly>
+
+              <label class="text-sm font-medium text-[#617589] dark:text-gray-400">Status</label>
+              <select id="modalStatus" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-[#111418] dark:text-white bg-gray-100 dark:bg-gray-700">
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+                <option value="MAINTENANCE">MAINTENANCE</option>
+              </select>
+
+              <button id="saveStatusBtn" class="mt-2 w-full h-10 bg-primary text-white rounded-lg font-bold hover:bg-blue-600 transition-colors">Update Status</button>
+            </div>
+          </div>
         </div>
 
         <!-- Pagination -->
@@ -239,6 +273,8 @@
         closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
         modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
     </script>
+    <script src="/frontend/ajax/busJS.js"></script>
+
 </body>
 
 </html>

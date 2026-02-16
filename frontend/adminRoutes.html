@@ -79,12 +79,12 @@
 
             <!-- Navigation -->
             <nav class="hidden md:flex items-center gap-9">
-                <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Dashboard</a>
-                <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Bookings</a>
-                <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Schedules</a>
-                <a href="#" class="text-sm font-bold text-primary border-b-2 border-primary py-1">Routes</a>
-                <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Buses</a>
-                <a href="#" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Reports</a>
+                <a href="/frontend/adminDashbord.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Dashboard</a>
+                <a href="/frontend/adminBookings.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Bookings</a>
+                <a href="/frontend/adminShudule.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Schedules</a>
+                <a href="/frontend/adminRoutes.html" class="text-sm font-bold text-primary border-b-2 border-primary py-1">Routes</a>
+                <a href="/frontend/adminBooking.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Buses</a>
+                <a href="/frontend/adminBooking.html" class="text-sm font-medium text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary">Reports</a>
             </nav>
 
             <!-- User Controls -->
@@ -126,18 +126,18 @@
                             
                             <!-- Origin -->
                             <label class="flex flex-col gap-2">
-                                <span class="text-sm font-semibold text-[#111418] dark:text-white">Origin</span>
-                                <input type="text" id="origin" name="origin" placeholder="e.g. New York" required 
+                                <span class="text-sm font-semibold text-[#111418] dark:text-white">Start Location</span>
+                                <input type="text" id="StartLocation" name="StartLocation" placeholder="e.g. MATARA" required 
                                        class="form-input w-full rounded-lg border-[#dbe0e6] dark:border-[#2d3a4a] bg-white dark:bg-[#101922] focus:border-primary focus:ring-1 focus:ring-primary h-12 text-sm focus:outline-none"/>
-                                <span id="origin-error" class="text-xs text-red-500 hidden">Origin is required</span>
+                                <span id="origin-error" class="text-xs text-red-500 hidden">Start Location is required</span>
                             </label>
 
                             <!-- Destination -->
                             <label class="flex flex-col gap-2">
-                                <span class="text-sm font-semibold text-[#111418] dark:text-white">Destination</span>
-                                <input type="text" id="destination" name="destination" placeholder="e.g. Boston" required 
+                                <span class="text-sm font-semibold text-[#111418] dark:text-white">End Location</span>
+                                <input type="text" id="EndLocation" name="EndLocation" placeholder="e.g. COLOMBO" required 
                                        class="form-input w-full rounded-lg border-[#dbe0e6] dark:border-[#2d3a4a] bg-white dark:bg-[#101922] focus:border-primary focus:ring-1 focus:ring-primary h-12 text-sm focus:outline-none"/>
-                                <span id="destination-error" class="text-xs text-red-500 hidden">Destination is required</span>
+                                <span id="destination-error" class="text-xs text-red-500 hidden">End Location is required</span>
                             </label>
 
                             <!-- Status -->
